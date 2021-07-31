@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import * as containerStyles from './Generic.module.css';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import Layouts from '../components/Layouts';
 
 const Markdown = ({ data }) => {
   const { markdownRemark } = data;
@@ -10,7 +10,7 @@ const Markdown = ({ data }) => {
   console.log(image);
 
   return (
-    <div className={`container ${containerStyles['genericDiv']}`}>
+    <Layouts>
       <h1>Markdown Template : {markdownRemark.frontmatter.title}</h1>
 
       <p>===================================</p>
@@ -24,7 +24,7 @@ const Markdown = ({ data }) => {
       <p>{markdownRemark.frontmatter.description}</p>
       {markdownRemark.frontmatter.slug && <p>Here Boss!!</p>}
       <div dangerouslySetInnerHTML={{ __html: markdownRemark.html }} />
-    </div>
+    </Layouts>
   );
 };
 
