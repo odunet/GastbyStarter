@@ -1,0 +1,16 @@
+.genericDiv {
+  width: 50%;
+  margin: 0 auto;
+  background-color: aliceblue;
+  box-shadow: 0 2rem 3rem rgba(0, 0, 0, 0.3);
+  height: 80vh;
+  text-align: center;
+}
+
+.genericDiv > p {
+  text-decoration: overline;
+}
+
+.genericDiv > div {
+  border-top: 1px dashed rgb(172, 169, 169);
+}
