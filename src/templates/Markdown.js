@@ -1,5 +1,5 @@
 import React from 'react';
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import Layouts from '../components/Layouts';
 
@@ -7,10 +7,33 @@ const Markdown = ({ data }) => {
   const { markdownRemark } = data;
   const image =
     markdownRemark.frontmatter.featuredImage.childImageSharp.gatsbyImageData;
-  console.log(image);
+  console.log(markdownRemark.fields.slug);
 
   return (
     <Layouts>
+      <Link
+        to={
+          markdownRemark.fields.slug !== '/second-markdown/'
+            ? '/first-markdown/'
+            : '/second-markdown/'
+        }
+      >
+        <h2>The slug is: {markdownRemark.fields.slug}</h2>
+      </Link>
+      <Link
+        to={
+          markdownRemark.fields.slug === '/first-markdown/'
+            ? '/second-markdown/'
+            : '/first-markdown/'
+        }
+      >
+        <h2>
+          The slug is:{' '}
+          {markdownRemark.fields.slug === '/first-markdown/'
+            ? '/second-markdown/'
+            : '/first-markdown/'}
+        </h2>
+      </Link>
       <h1>Markdown Template : {markdownRemark.frontmatter.title}</h1>
       <br />
       <p>
@@ -39,6 +62,9 @@ export const pageQuery = graphql`
   query ($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
+      fields {
+        slug
+      }
       frontmatter {
         description
         slug

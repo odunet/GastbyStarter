@@ -44,7 +44,12 @@ const Footer = () => {
 };
 
 // Emotion styled component
-const StyledNav = styled.div`
+const Starter = styled.div`
+  font-style: italic;
+`;
+
+// Emotion styled component
+const StyledNav = styled(Starter)`
   text-decoration: underline;
   color: ${(props) => (props.color ? props.color : 'yellow')};
 `;

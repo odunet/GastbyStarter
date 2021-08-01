@@ -5,7 +5,10 @@ import Layouts from '../components/Layouts';
 import useApi from '../hook/use-api';
 
 const Index = ({ data }) => {
+  //fROM Gatsby GraphQL
   const { file } = data;
+
+  //From Rest API
   const [data_] = useApi();
 
   return (
@@ -33,7 +36,11 @@ const Index = ({ data }) => {
           placeholder='blurred'
         />
       </div>
+      {/* Show data from REST endpoint */}
+      <br />
+      <p>===========================================</p>
       <p>{JSON.stringify(data_)}</p>
+      <br />
     </Layouts>
   );
 };
