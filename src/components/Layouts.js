@@ -2,11 +2,21 @@
 import * as containerStyles from './Layouts.module.css';
 import styled from '@emotion/styled';
 import { css, jsx } from '@emotion/react';
+import { Helmet } from 'react-helmet';
 
 // Layout wrapper componenet
 const Layouts = ({ children }) => {
   return (
     <div className={`container ${containerStyles['genericDiv']}`}>
+      <Helmet>
+        <meta charSet='utf-8' />
+        <title>Gastby Starter</title>
+        <link
+          rel='canonical'
+          href='https://hardcore-goldberg-832256.netlify.app/'
+        />
+        <meta name='description' content='Gastby Starter' />
+      </Helmet>
       {children}
       <Footer />
     </div>
