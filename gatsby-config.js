@@ -52,5 +52,17 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`, // Needed for dynamic images
     `gatsby-plugin-sass`, //Sass plugin
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `GastbyStarter`,
+        short_name: `GatsbyS`,
+        start_url: `/`,
+        background_color: `#5b3e29`,
+        theme_color: `#fdf5e6`,
+        display: `standalone`,
+        icon: 'src/images/icon.png',
+      },
+    },
   ],
 };

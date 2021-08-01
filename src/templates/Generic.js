@@ -34,7 +34,7 @@ export const imageQuery = graphql`
           width: 500
           placeholder: BLURRED
           formats: PNG
-          layout: FULL_WIDTH
+          layout: CONSTRAINED
         )
       }
     }

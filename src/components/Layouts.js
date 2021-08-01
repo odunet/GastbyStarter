@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import React from 'react';
 import * as containerStyles from './Layouts.module.css';
 import styled from '@emotion/styled';
 import { css, jsx } from '@emotion/react';
