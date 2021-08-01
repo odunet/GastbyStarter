@@ -10,7 +10,7 @@ exports.createPages = async ({ actions, graphql }) => {
 
   data.forEach((page) => {
     createPage({
-      path: page.slug,
+      path: page.slug + '/',
       component: path.resolve('./src/templates/Generic.js'),
       context: {
         title: page.title,
