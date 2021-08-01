@@ -2,9 +2,12 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import { StaticImage } from 'gatsby-plugin-image';
 import Layouts from '../components/Layouts';
+import useApi from '../hook/use-api';
 
 const Index = ({ data }) => {
   const { file } = data;
+  const [data_] = useApi();
+
   return (
     <Layouts>
       <h1 style={{ textAlign: 'center', margin: '3rem 0' }}>
@@ -30,6 +33,7 @@ const Index = ({ data }) => {
           placeholder='blurred'
         />
       </div>
+      <p>{JSON.stringify(data_)}</p>
     </Layouts>
   );
 };

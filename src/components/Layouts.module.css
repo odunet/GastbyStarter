@@ -7,8 +7,9 @@
   text-align: center;
 }
 
-.genericDiv > p {
-  text-decoration: overline;
+.genericDiv > p:hover {
+  color: black;
+  cursor: pointer;
 }
 
 .genericDiv > div {

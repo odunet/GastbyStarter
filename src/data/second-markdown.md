@@ -1,7 +1,7 @@
 ---
 title: Second Markdown
 description: You are corrrect, Second.
-slug: /second-markdown
+slug: /second-markdown [Not used anymore, slug fetched using onCreateNode]
 featuredImage: ../images/carBack.jpg
 ---
 

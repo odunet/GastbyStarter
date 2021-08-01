@@ -12,8 +12,15 @@ const Markdown = ({ data }) => {
   return (
     <Layouts>
       <h1>Markdown Template : {markdownRemark.frontmatter.title}</h1>
-
-      <p>===================================</p>
+      <br />
+      <p>
+        ===={' '}
+        <small>
+          <b>Note Update: </b>Slug from <b>.md</b> file i.e
+          {markdownRemark.frontmatter.slug} no longer used. ===={' '}
+        </small>
+      </p>
+      <br />
       <GatsbyImage
         loading='eager'
         image={image}
