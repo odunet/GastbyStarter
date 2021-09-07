@@ -1,6 +1,15 @@
 const path = require('path');
 const data = require('./src/data/dataPage');
+require('dotenv').config()
 const { createFilePath } = require(`gatsby-source-filesystem`);
+
+// gatsby-node.js
+exports.onPostBootstrap = () => {
+  console.log("****************")
+  console.log(process.env)
+  console.log("****************")
+
+}
 
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
