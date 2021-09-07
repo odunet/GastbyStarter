@@ -5,8 +5,12 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 exports.createPages = async ({ actions, graphql }) => {
   const { createPage } = actions;
 
-  console.log(data);
-  console.log('==========================================');
+
+  /**
+   * GENERIC TEMPLATE
+   */
+  // console.log(data);
+  // console.log('==========================================');
 
   data.forEach((page) => {
     createPage({
@@ -19,6 +23,9 @@ exports.createPages = async ({ actions, graphql }) => {
     });
   });
 
+  /**
+   * MARKDOWN TEMPLATE
+   */
   const mdPages = await graphql(`
     query {
       allMarkdownRemark {
@@ -33,8 +40,8 @@ exports.createPages = async ({ actions, graphql }) => {
     }
   `);
 
-  console.log(JSON.stringify(mdPages));
-  console.log('===============================');
+  // console.log(JSON.stringify(mdPages));
+  // console.log('===============================');
 
   //create page
   mdPages.data.allMarkdownRemark.edges.map(({ node }) => {
@@ -46,13 +53,56 @@ exports.createPages = async ({ actions, graphql }) => {
       },
     });
   });
+
+  /**
+   * AIRTABLE TEMPLATE
+   */
+  const airPages = await graphql(`
+    query {
+      allAirtable {
+        edges {
+          node {
+            data {
+              Categories
+              Name
+              Role
+              Start_Date
+              Attachments {
+                url
+              }
+            }
+            table
+          }
+        }
+      }
+    }
+  `);
+
+  // console.log(JSON.stringify(airPages, null, 2));
+  // console.log('===============================');
+
+  //create page
+  airPages.data.allAirtable.edges.map(({ node }) => {
+    createPage({
+      path: node.data.Name,
+      component: path.resolve('./src/templates/AirTable.js'),
+      context: {
+        slug: node.data.Name,
+        data: node
+      },
+    });
+  });
+
+
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
+exports.onCreateNode = ({ node, actions, getNode, createNodeId }) => {
   const { createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });
+    console.log(value);
+    console.log('===========================');
 
     createNodeField({
       name: `slug`,
@@ -61,3 +111,24 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     });
   }
 };
+
+
+/**
+ *  Helper to manage unavailable fromtatter fields to prevent error. E.G, my query of 
+ * no existent mentor field should not give error.
+ *  */
+
+exports.createSchemaCustomization = ({ actions }) => {
+  actions.createTypes(`
+
+    type MarkdownRemark implements Node @infer {
+      frontmatter: MarkdownRemarkFrontmatter!
+    }
+
+
+    type MarkdownRemarkFrontmatter @infer {
+      mentor: String
+      date: Date @dateformat
+    }
+  `)
+}

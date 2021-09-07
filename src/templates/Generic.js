@@ -7,6 +7,8 @@ import Layouts from '../components/Layouts';
 const Generic = ({ pageContext, data }) => {
   const image = getImage(data.file);
   console.log(image);
+  console.log(data.file.size);
+  console.log(data.file.childImageSharp.internal.contentDigest);
   return (
     <Layouts>
       <h1>Generic Template : {pageContext.title}</h1>
@@ -29,14 +31,8 @@ export const imageQuery = graphql`
   query ImageQuery {
     file(relativePath: { eq: "carBack.jpg" }) {
       publicURL
-      childImageSharp {
-        gatsbyImageData(
-          width: 500
-          placeholder: BLURRED
-          formats: PNG
-          layout: CONSTRAINED
-        )
-      }
+      size
+      ...LayoutFragment
     }
   }
 `;

@@ -3,6 +3,7 @@ import * as containerStyles from './Layouts.module.css';
 import styled from '@emotion/styled';
 import { css, jsx } from '@emotion/react';
 import { Helmet } from 'react-helmet';
+import { graphql } from "gatsby"
 
 // Layout wrapper componenet
 const Layouts = ({ children }) => {
@@ -52,6 +53,22 @@ const Starter = styled.div`
 const StyledNav = styled(Starter)`
   text-decoration: underline;
   color: ${(props) => (props.color ? props.color : 'yellow')};
+`;
+
+export const imageQuery = graphql`
+  fragment LayoutFragment on File {
+      childImageSharp {
+        gatsbyImageData(
+          width: 500
+          placeholder: BLURRED
+          formats: PNG
+          layout: CONSTRAINED
+        )
+        internal {
+          contentDigest
+        }
+      }
+  }
 `;
 
 export default Layouts;

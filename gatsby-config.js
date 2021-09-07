@@ -1,6 +1,9 @@
+const dotenv = require('dotenv');
+dotenv.config();
+
 module.exports = {
   siteMetadata: {
-    title: 'My Gatsby Site',
+    title: 'My Gatsby Site - Odunet',
   },
   plugins: [
     {
@@ -15,6 +18,20 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-airtable`,
+      options: {
+        apiKey: process.env.AIRTABLE_API_KEY, // may instead specify via env, see below
+        concurrency: 5, // default, see using markdown and attachments for more information
+        tables: [
+          {
+            baseId: `appNs8OWqHwlD8zIE`,
+            tableName: `items`,
+            // can leave off queryName, mapping or tableLinks if not needed
+          }
+        ]
+      }
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `data`,
@@ -22,9 +39,9 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        name: `images`,
+        name: 'images',
         path: `${__dirname}/src/images`,
       },
     },
@@ -67,4 +84,7 @@ module.exports = {
     },
     `gatsby-plugin-offline`,
   ],
+  flags: {
+    DEV_SSR: true,
+  }
 };
