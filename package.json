@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "printenv",
+    "preinstall": "printenv && node scripts.js",
+    "predevelop": "printenv && node scripts.js",
     "develop": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
