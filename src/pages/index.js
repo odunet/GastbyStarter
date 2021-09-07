@@ -4,10 +4,6 @@ import { StaticImage } from 'gatsby-plugin-image';
 import Layouts from '../components/Layouts';
 import useApi from '../hook/use-api';
 import staticQuery from '../staticQuery';
-import shifter from '../helper/rot13'
-
-//Import Obfuscate
-import Obfuscate from '../helper/Obfuscate'
 
 const Index = ({ data }) => {
   //fROM Gatsby GraphQL
@@ -25,8 +21,6 @@ const Index = ({ data }) => {
   useEffect(() => {
     setIsClient(true)
   }, [])
-
-  let scrambledEmail = shifter("mailto:webmaster_gatsby@example.com")
 
   return (
     <Layouts>
@@ -59,27 +53,11 @@ const Index = ({ data }) => {
       <p>{JSON.stringify(data_)}</p>
       <br />
       <address>
-        Written by <a href={isClient && shifter(scrambledEmail)}>Jon Doe</a>.<br />
         Visit us at: Cabramatta, Box 564, Disneyland<br />
         USA
       </address>
 
       //Using Obfuscate package
-      <br />
-      <p>
-        Phone: <Obfuscate tel="205-454-1234" />
-        <br />
-        Email:{' '}
-        <Obfuscate
-          email="hello@coston.io"
-          headers={{
-            cc: 'dade@zero-cool.af',
-            bcc: 'smith@machina.net',
-            subject: 'react-obfuscate',
-            body: 'Down with the machines!',
-          }}
-        />
-      </p>
       <br />
     </Layouts>
   );
