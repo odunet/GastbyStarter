@@ -5,9 +5,9 @@ const { createFilePath } = require(`gatsby-source-filesystem`);
 
 // gatsby-node.js
 exports.onPostBootstrap = () => {
-  console.log("****************")
+  console.log("*****************")
   console.log(process.env)
-  console.log("****************")
+  console.log("*****************")
 
 }
 
