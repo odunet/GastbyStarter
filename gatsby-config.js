@@ -83,6 +83,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
+    `gatsby-plugin-gatsby-cloud`,
   ],
   flags: {
     DEV_SSR: true,
