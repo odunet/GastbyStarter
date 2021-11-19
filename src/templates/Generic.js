@@ -22,7 +22,7 @@ const Generic = ({ pageContext, data }) => {
       />
       <p>===================================</p>
       <GatsbyImage image={image} alt='My sample dynamic import name' />
-      <h2>I like my Ajibaby</h2>
+      <h2>I like my tiwababy</h2>
     </Layouts>
   );
 };
