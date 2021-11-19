@@ -25,7 +25,7 @@ const Index = ({ data }) => {
   return (
     <Layouts>
       <h1 style={{ textAlign: 'center', margin: '3rem 0' }}>
-        This is the homepage.
+        This is the homepage | V4 Sandbox
       </h1>
       <div
         style={{
